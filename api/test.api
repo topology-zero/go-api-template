@@ -1,0 +1,26 @@
+syntax = "v1"
+
+type (
+    TestRequest {
+        X int `json:"x"`    // 测试X
+        Y int `json:"y"`    // 测试Y
+        Z string `json:"z"` // 测试Z
+    }
+
+    TestResponse {
+        X string `json:"x"` // 测试X
+        Y string `json:"y"` // 测试Y
+        Z int `json:"z"`    // 测试Z
+    }
+)
+
+@server(
+    group: test
+    prefix: /t
+    swtags: 测试
+)
+service go-api-template {
+    @doc "测试测试"
+    @handler test
+    post /test (TestRequest) returns (TestResponse)
+}

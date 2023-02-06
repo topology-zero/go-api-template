@@ -1,0 +1,106 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "go-api-template 测试接口",
+    "description": "go-api-template 前端APP接口",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/t/test": {
+      "post": {
+        "summary": "测试测试",
+        "operationId": "test",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TestResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TestRequest"
+            }
+          }
+        ],
+        "tags": [
+          "测试"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "TestRequest": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 测试X"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 测试Y"
+        },
+        "z": {
+          "type": "string",
+          "description": " 测试Z"
+        }
+      },
+      "title": "TestRequest",
+      "required": [
+        "x",
+        "y",
+        "z"
+      ]
+    },
+    "TestResponse": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "string",
+          "description": " 测试X"
+        },
+        "y": {
+          "type": "string",
+          "description": " 测试Y"
+        },
+        "z": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 测试Z"
+        }
+      },
+      "title": "TestResponse",
+      "required": [
+        "x",
+        "y",
+        "z"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

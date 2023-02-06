@@ -1,0 +1,26 @@
+Server:
+  Name: go-api-template
+  Host: 127.0.0.1
+  Port: 8888
+
+Jwt:
+  Secret:
+  Expire:
+
+Log:
+  Dir: /var/log/go-api-template
+  Level: debug # 合法选项 "panic" "fatal" "error" "warn" "warning" "info" "debug" "trace"
+
+Mysql:
+  Host: 127.0.0.1
+  Port: 3309
+  User: root
+  Pwd: 123456
+  Db: admin-template
+
+Redis:
+  Host:
+  Port:
+  User:
+  Pwd:
+  Db: 0
