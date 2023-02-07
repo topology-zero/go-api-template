@@ -26,7 +26,7 @@ func main() {
 	flag.Parse()
 
 	configFile := fmt.Sprintf("etc/go-api-template-%s.yaml", config.Env)
-	e := gin.Default()
+	e := gin.New()
 
 	e.Use(
 		middleware.RequestId,
