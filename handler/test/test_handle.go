@@ -3,6 +3,7 @@ package test
 import (
 	"go-api-template/internal/response"
 	"go-api-template/logic/test"
+	"go-api-template/svc"
 	testType "go-api-template/types/test"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,6 @@ func TestHandle(c *gin.Context) {
 		return
 	}
 
-	resp, err := test.Test(&req)
+	resp, err := test.Test(&req, svc.NewServiceContext(c))
 	response.HandleResponse(c, resp, err)
 }
