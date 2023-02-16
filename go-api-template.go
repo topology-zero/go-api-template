@@ -7,16 +7,14 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"go-api-template/config"
 	"go-api-template/middleware"
 	"go-api-template/model"
 	"go-api-template/pkg/logger"
 	"go-api-template/pkg/swagger"
-	"go-api-template/query"
 	"go-api-template/routes"
-
-	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
 )
 
 //go:generate goctl api plugin -p gengin -api go-api-template.api -dir .
@@ -39,7 +37,7 @@ func main() {
 	logger.Setup()
 	//redis.Setup()
 	model.Setup()
-	query.SetDefault(model.DB())
+	//query.SetDefault(model.DB())
 	routes.Setup(e)
 	swagger.Setup(e)
 

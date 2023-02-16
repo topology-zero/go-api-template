@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"go-api-template/config"
-	"go-api-template/model/internal"
 	"go-api-template/pkg/logger"
 	"gorm.io/gen"
 )
@@ -81,7 +80,6 @@ func TestGEN(t *testing.T) {
 
 	// 创建模型的方法 + 创建 query 文件 + 自定义方法
 	//g.ApplyInterface(func(internal.AdminUser) {}, g.GenerateModel("admin_user"))
-	g.ApplyInterface(func(internal.Role) {}, g.GenerateModel("role"))
 
 	// 最后执行文件生成
 	g.Execute()
