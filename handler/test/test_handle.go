@@ -17,6 +17,6 @@ func TestHandle(c *gin.Context) {
 		return
 	}
 
-	resp, err := test.Test(&req, svc.NewServiceContext(c))
+	resp, err := test.Test(svc.NewServiceContext(c), &req)
 	response.HandleResponse(c, resp, err)
 }

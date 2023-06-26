@@ -5,8 +5,9 @@ import (
 	_ "embed"
 	"text/template"
 
-	"github.com/gin-gonic/gin"
 	"go-api-template/config"
+
+	"github.com/gin-gonic/gin"
 )
 
 //go:embed swagger.html

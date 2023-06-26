@@ -1,11 +1,13 @@
 package util
 
 import (
+	"reflect"
+	"strings"
+	"sync"
 	"time"
 
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
-	"github.com/sirupsen/logrus"
 )
 
 // CopyValue 数据复制
@@ -30,11 +32,18 @@ func CopyValue(toValue, fromValue interface{}) error {
 	})
 }
 
-// WarpDbError 将错误打印，且不包含敏感信息返回
-func WarpDbError(err error) error {
-	if err == nil {
-		return nil
-	}
-	logrus.Errorf("数据库异常：%+v", errors.WithStack(err))
-	return errors.New("系统错误")
+type empty struct{}
+
+var (
+	pkgNameOnce sync.Once
+	pkgName     string
+)
+
+func GetPkgName() string {
+	pkgNameOnce.Do(func() {
+		pkgNames := reflect.TypeOf(empty{}).PkgPath()
+		split := strings.Split(pkgNames, "/")
+		pkgName = split[0]
+	})
+	return pkgName
 }

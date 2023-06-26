@@ -1,9 +1,9 @@
 syntax = "v1"
 
 info(
-	title: "go-api-template 测试接口"
-	desc: "go-api-template 前端APP接口"
-	author: "master joy"
+    title: "go-api-template 测试接口"
+    desc: "go-api-template 前端APP接口"
+    author: "master joy"
 )
 
 import "api/test.api"

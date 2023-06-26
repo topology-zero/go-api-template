@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sirupsen/logrus"
 	"go-api-template/config"
+
+	"github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	glog "gorm.io/gorm/logger"
@@ -32,7 +33,7 @@ func Setup() {
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true,
 		},
-		Logger: glog.New(logrus.StandardLogger(), glog.Config{
+		Logger: NewLogger(glog.Config{
 			SlowThreshold:             200 * time.Millisecond,
 			Colorful:                  false,
 			IgnoreRecordNotFoundError: true,

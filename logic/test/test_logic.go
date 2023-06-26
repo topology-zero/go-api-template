@@ -8,7 +8,7 @@ import (
 )
 
 // Test 测试测试
-func Test(req *test.TestRequest, ctx *svc.ServiceContext) (resp test.TestResponse, err error) {
+func Test(ctx *svc.ServiceContext, req *test.TestRequest) (resp test.TestResponse, err error) {
 	z, _ := strconv.Atoi(req.Z)
 
 	resp.X = strconv.Itoa(req.X)

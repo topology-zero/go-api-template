@@ -4,9 +4,10 @@ import (
 	"context"
 	"fmt"
 
+	"go-api-template/config"
+
 	redigo "github.com/go-redis/redis/v8"
 	"github.com/sirupsen/logrus"
-	"go-api-template/config"
 )
 
 var Client *redigo.Client

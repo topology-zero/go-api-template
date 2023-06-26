@@ -7,14 +7,16 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
 	"go-api-template/config"
 	"go-api-template/middleware"
 	"go-api-template/model"
 	"go-api-template/pkg/logger"
+	"go-api-template/pkg/prometheus"
 	"go-api-template/pkg/swagger"
 	"go-api-template/routes"
+
+	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 //go:generate goctl api plugin -p gengin -api go-api-template.api -dir .
@@ -31,10 +33,12 @@ func main() {
 		middleware.RequestLog,
 		gin.Recovery(),
 		middleware.CorsMiddleware,
+		middleware.ApiHitRecord,
 	)
 
 	config.Setup(configFile)
 	logger.Setup()
+	prometheus.Setup(e)
 	//redis.Setup()
 	model.Setup()
 	//query.SetDefault(model.DB())
