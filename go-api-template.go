@@ -15,6 +15,7 @@ import (
 	"go-api-template/pkg/swagger"
 	"go-api-template/routes"
 
+	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -36,6 +37,7 @@ func main() {
 		middleware.ApiHitRecord,
 	)
 
+	pprof.Register(e)
 	config.Setup(configFile)
 	logger.Setup()
 	prometheus.Setup(e)
