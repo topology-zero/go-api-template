@@ -1,21 +1,13 @@
 package test
 
 import (
-	"strconv"
-
 	"go-api-template/svc"
-	"go-api-template/types/test"
+	"go-api-template/types"
 )
 
 // Test 测试测试
-func Test(ctx *svc.ServiceContext, req *test.TestRequest) (resp test.TestResponse, err error) {
-	z, _ := strconv.Atoi(req.Z)
-
-	resp.X = strconv.Itoa(req.X)
-	resp.Y = strconv.Itoa(req.Y)
-	resp.Z = z
-
-	ctx.Log.Info("测试 traceId ")
+func Test(ctx *svc.ServiceContext, req *types.TestRequest) (resp []types.TestResponse, err error) {
+	// todo: add your logic here and delete this line
 
 	return
 }

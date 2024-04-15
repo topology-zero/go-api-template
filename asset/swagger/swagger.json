@@ -24,7 +24,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/TestResponse"
+              "$ref": "#/definitions/[]TestResponse"
             }
           }
         },

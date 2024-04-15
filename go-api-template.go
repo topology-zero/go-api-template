@@ -20,7 +20,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-//go:generate goctl api plugin -p gengin -api go-api-template.api -dir .
+//go:generate gengin go-api-template.api
 //go:generate goctl api plugin -p "goctl-swagger swagger -filename asset/swagger/swagger.json" -api go-api-template.api -dir .
 
 func main() {

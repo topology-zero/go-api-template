@@ -10,5 +10,4 @@ import (
 func RegisterTestRoute(e *gin.Engine) {
 	g := e.Group("/t")
 	g.POST("/test", test.TestHandle)
-
 }

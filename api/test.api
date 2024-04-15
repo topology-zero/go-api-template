@@ -22,5 +22,5 @@ type (
 service go-api-template {
     @doc "测试测试"
     @handler test
-    post /test (TestRequest) returns (TestResponse)
+    post /test (TestRequest) returns ([]TestResponse)
 }
