@@ -1,106 +1,107 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "go-api-template 测试接口",
-    "description": "go-api-template 前端APP接口",
-    "version": ""
-  },
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/t/test": {
-      "post": {
-        "summary": "测试测试",
-        "operationId": "test",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/[]TestResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/TestRequest"
-            }
-          }
-        ],
-        "tags": [
-          "测试"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "TestRequest": {
-      "type": "object",
-      "properties": {
-        "x": {
-          "type": "integer",
-          "format": "int32",
-          "description": " 测试X"
-        },
-        "y": {
-          "type": "integer",
-          "format": "int32",
-          "description": " 测试Y"
-        },
-        "z": {
-          "type": "string",
-          "description": " 测试Z"
+    "openapi": "3.1.0",
+    "servers": [
+        {
+            "url": "/"
         }
-      },
-      "title": "TestRequest",
-      "required": [
-        "x",
-        "y",
-        "z"
-      ]
+    ],
+    "info": {
+        "title": "go-api-template 测试接口"
     },
-    "TestResponse": {
-      "type": "object",
-      "properties": {
-        "x": {
-          "type": "string",
-          "description": " 测试X"
-        },
-        "y": {
-          "type": "string",
-          "description": " 测试Y"
-        },
-        "z": {
-          "type": "integer",
-          "format": "int32",
-          "description": " 测试Z"
+    "tags": [
+        {
+            "name": "测试"
         }
-      },
-      "title": "TestResponse",
-      "required": [
-        "x",
-        "y",
-        "z"
-      ]
+    ],
+    "security": [
+        {
+            "apiKey": []
+        }
+    ],
+    "paths": {
+        "/t/test": {
+            "post": {
+                "tags": [
+                    "测试"
+                ],
+                "summary": "测试测试",
+                "operationId": "8f99615e-f1f4-43f0-8041-43bbc78dbd74",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TestRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TestResponse",
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TestRequest": {
+                "type": "object",
+                "title": "TestRequest",
+                "properties": {
+                    "x": {
+                        "description": "测试X",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "y": {
+                        "description": "测试Y",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "z": {
+                        "description": "测试Z",
+                        "type": "string"
+                    }
+                }
+            },
+            "TestResponse": {
+                "type": "object",
+                "title": "TestResponse",
+                "properties": {
+                    "x": {
+                        "description": "测试X",
+                        "type": "string"
+                    },
+                    "y": {
+                        "description": "测试Y",
+                        "type": "string"
+                    },
+                    "z": {
+                        "description": "测试Z",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiKey": {
+                "type": "apiKey",
+                "description": "Enter JWT Bearer token **_only_**",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
     }
-  },
-  "securityDefinitions": {
-    "apiKey": {
-      "type": "apiKey",
-      "description": "Enter JWT Bearer token **_only_**",
-      "name": "Authorization",
-      "in": "header"
-    }
-  }
 }
