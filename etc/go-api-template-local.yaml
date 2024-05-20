@@ -9,7 +9,7 @@ Jwt:
 
 Log:
   Dir: /var/log/go-api-template
-  Level: debug # 合法选项 "panic" "fatal" "error" "warn" "warning" "info" "debug" "trace"
+  Level: trace # 合法选项 "panic" "fatal" "error" "warn" "warning" "info" "debug" "trace"
 
 Mysql:
   Host: 127.0.0.1
