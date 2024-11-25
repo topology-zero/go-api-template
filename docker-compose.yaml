@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  go-api-template:
+    image: registry.cn-hangzhou.aliyuncs.com/tanwuyang/go-api-template:latest
+    container_name: go-api-template
+    restart: always
+    command:
+      - "-env"
+      - "local"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./log:/var/logs/go-api-template
+      - ./etc:/home/project/etc
+      - ./asset:/home/project/asset
