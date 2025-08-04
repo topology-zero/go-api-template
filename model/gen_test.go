@@ -9,6 +9,7 @@ import (
 	"go-api-template/pkg/logger"
 
 	"gorm.io/gen"
+	"gorm.io/gorm"
 )
 
 // 运行该测试用例时,需要设置工作目录为项目目录
@@ -59,8 +60,8 @@ func TestGEN(t *testing.T) {
 	})
 
 	// 不需要将数据库中的 int 转换成 struct 的 int32
-	g.WithDataTypeMap(map[string]func(detailType string) (dataType string){
-		"int": func(detailType string) (dataType string) { return "int" },
+	g.WithDataTypeMap(map[string]func(detailType gorm.ColumnType) (dataType string){
+		"int": func(detailType gorm.ColumnType) (dataType string) { return "int" },
 	})
 
 	// 默认 deleted_at 字段是 gorm.Delete 类型, 如果其他字段需要实现软删除,则需要将这个设置
@@ -70,17 +71,17 @@ func TestGEN(t *testing.T) {
 	g.UseDB(db)
 
 	// 生成全部表的 model
-	//g.GenerateAllTable()
+	// g.GenerateAllTable()
 
 	// 创建模型,不创建 query 文件
-	//g.GenerateModel("admin_user")
+	// g.GenerateModel("admin_user")
 
 	// 创建模型 + query ,不加入自定义方法
-	//g.ApplyBasic(g.GenerateModel("auth"))
-	//g.ApplyBasic(g.GenerateModel("casbin_rule"))
+	// g.ApplyBasic(g.GenerateModel("auth"))
+	// g.ApplyBasic(g.GenerateModel("casbin_rule"))
 
 	// 创建模型的方法 + 创建 query 文件 + 自定义方法
-	//g.ApplyInterface(func(internal.AdminUser) {}, g.GenerateModel("admin_user"))
+	// g.ApplyInterface(func(internal.AdminUser) {}, g.GenerateModel("admin_user"))
 
 	// 最后执行文件生成
 	g.Execute()
