@@ -49,23 +49,31 @@ func TestGEN(t *testing.T) {
 		FieldWithTypeTag: false, // generate with gorm column type tag
 	})
 
-	// 不需要 json tag
-	g.WithJSONTagNameStrategy(func(columnName string) (tagContent string) {
-		return ""
-	})
-
 	// model 命名
 	g.WithModelNameStrategy(func(tableName string) (modelName string) {
 		return db.Config.NamingStrategy.SchemaName(tableName) + "Model"
 	})
 
 	// 不需要将数据库中的 int 转换成 struct 的 int32
-	g.WithDataTypeMap(map[string]func(detailType gorm.ColumnType) (dataType string){
-		"int": func(detailType gorm.ColumnType) (dataType string) { return "int" },
+	g.WithDataTypeMap(map[string]func(columnType gorm.ColumnType) (dataType string){
+		"int": func(columnType gorm.ColumnType) (dataType string) {
+			return "int"
+		},
+		"tinyint": func(columnType gorm.ColumnType) (dataType string) {
+			return "int"
+		},
 	})
 
-	// 默认 deleted_at 字段是 gorm.Delete 类型, 如果其他字段需要实现软删除,则需要将这个设置
-	g.WithOpts(gen.FieldType("delete_time", "gorm.DeletedAt"))
+	g.WithOpts(
+		// 默认 deleted_at 字段是 gorm.Delete 类型, 如果其他字段需要实现软删除, 则需要将这个设置
+		gen.FieldType("delete_time", "gorm.DeletedAt"),
+
+		// 不需要 json tag
+		gen.FieldModify(func(field gen.Field) gen.Field {
+			field.Tag.Remove("json")
+			return field
+		}),
+	)
 
 	// 设置目标 db
 	g.UseDB(db)
@@ -77,8 +85,9 @@ func TestGEN(t *testing.T) {
 	// g.GenerateModel("admin_user")
 
 	// 创建模型 + query ,不加入自定义方法
-	// g.ApplyBasic(g.GenerateModel("auth"))
-	// g.ApplyBasic(g.GenerateModel("casbin_rule"))
+	// g.ApplyBasic(
+	//      g.GenerateModel("auth"),
+	// )
 
 	// 创建模型的方法 + 创建 query 文件 + 自定义方法
 	// g.ApplyInterface(func(internal.AdminUser) {}, g.GenerateModel("admin_user"))
