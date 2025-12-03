@@ -8,7 +8,7 @@ Jwt:
   Expire:
 
 Log:
-  Dir: /var/log/go-api-template
+  Dir: /var/logs/go-api-template
   Level: trace # 合法选项 "panic" "fatal" "error" "warn" "warning" "info" "debug" "trace"
 
 Mysql:
