@@ -1,5 +1,5 @@
 # 构建
-FROM golang:1.25-alpine as builder
+FROM golang:1.26-alpine as builder
 WORKDIR /home/project
 ENV GOPROXY=https://goproxy.cn
 COPY ./ ./

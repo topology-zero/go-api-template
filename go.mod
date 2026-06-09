@@ -1,6 +1,6 @@
 module go-api-template
 
-go 1.25.0
+go 1.26
 
 require (
 	github.com/gin-contrib/pprof v1.5.3
